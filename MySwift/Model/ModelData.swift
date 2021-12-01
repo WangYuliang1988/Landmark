@@ -13,9 +13,13 @@ import Foundation
 // SwiftUI watches for any changes to observable objects that could affect a view, and
 // displays the correct version of the view after a change.
 final class ModelData: ObservableObject {
-    // An observable object needs to publish any changes to its data, so that its
-    // subscribers can pick up the change.
+    // Use the @Published attribute to publish an observable object's data changes, so
+    // its subscribers can pick up the change.
     @Published var landmarks: [Landmark] = load("landmarkData.json")
+    
+    // If you'll never modify the data after initially loading it, you don’t
+    // need to mark it with the @Published attribute.
+    var hikes: [Hike] = load("hikeData.json")
 }
 
 func load<T: Decodable>(_ filename: String) -> T{
