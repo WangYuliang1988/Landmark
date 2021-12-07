@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9539697E275DE2FB0031A68A"
+               BuildableName = "MyWatchSwift.app"
+               BlueprintName = "MyWatchSwift"
+               ReferencedContainer = "container:MySwift.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "958DF043274F83BD002A486F"
                BuildableName = "MySwift.app"
                BlueprintName = "MySwift"
@@ -40,16 +54,18 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/MyWatchSwift">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "958DF043274F83BD002A486F"
-            BuildableName = "MySwift.app"
-            BlueprintName = "MySwift"
+            BlueprintIdentifier = "9539697E275DE2FB0031A68A"
+            BuildableName = "MyWatchSwift.app"
+            BlueprintName = "MyWatchSwift"
             ReferencedContainer = "container:MySwift.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -57,16 +73,27 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/MyWatchSwift">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "958DF043274F83BD002A486F"
-            BuildableName = "MySwift.app"
-            BlueprintName = "MySwift"
+            BlueprintIdentifier = "9539697E275DE2FB0031A68A"
+            BuildableName = "MyWatchSwift.app"
+            BlueprintName = "MyWatchSwift"
             ReferencedContainer = "container:MySwift.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9539697E275DE2FB0031A68A"
+            BuildableName = "MyWatchSwift.app"
+            BlueprintName = "MyWatchSwift"
+            ReferencedContainer = "container:MySwift.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
