@@ -21,39 +21,75 @@ struct LandmarkList: View {
     // to a view and its subviews, you always create state as private.
     @State private var showFavoritesOnly = false
     
+    @State private var filter = FilterCategory.all
+    @State private var selectedlandmark: Landmark?
+    
+    enum FilterCategory: String, CaseIterable, Identifiable {
+        case all = "All"
+        case lakes = "Lakes"
+        case rivers = "Rivers"
+        case mountains = "Mountains"
+        
+        var id: FilterCategory { self }
+    }
+    
     var filteredLandmarks: [Landmark] {
         modelData.landmarks.filter { landmark in
             (!showFavoritesOnly || landmark.isFavorite)
+                && (filter == .all || filter.rawValue == landmark.category.rawValue)
         }
+    }
+    
+    var navigationTitle: String {
+        let title = filter == .all ? "Landmarks" : filter.rawValue
+        return showFavoritesOnly ? "Favorite \(title)" : title
+    }
+    
+    var selectedIndex: Int? {
+        return modelData.landmarks.firstIndex(where: {$0.id == selectedlandmark?.id} )
     }
     
     var body: some View {
         NavigationView {
-            List {
-                Toggle(isOn: $showFavoritesOnly) {
-                    Text("Favorites only")
-                }
-                
+            List(selection: $selectedlandmark) {
                 ForEach(filteredLandmarks) { landmark in
                     NavigationLink {
                         LandmarkDetail(landmark: landmark)
                     } label: {
                         LandmarkRow(landmark: landmark)
                     }
+                    .tag(landmark)
                 }
             }
-            .navigationTitle("Landmarks")
+            .navigationTitle(navigationTitle)
+            .frame(minWidth: 300)
+            .toolbar {
+                ToolbarItem {
+                    Menu {
+                        Picker("Filter", selection: $filter) {
+                            ForEach(FilterCategory.allCases) { category in
+                                Text(category.rawValue).tag(category)
+                            }
+                        }
+                        .pickerStyle(.inline)
+                        
+                        Toggle(isOn: $showFavoritesOnly) {
+                            Text("Favorites only")
+                        }
+                    } label: {
+                        Label("Filter", systemImage: "slider.horizontal.3")
+                    }
+                }
+            }
+            Text("Select a Landmark.")
         }
+        .focusedValue(\.selectedLandmark, $modelData.landmarks[selectedIndex ?? 0])
     }
 }
 
 struct LandmarkList_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(["iPhone 13", "iPhone 8"], id: \.self) { deviceName in
-            LandmarkList()
-                .environmentObject(ModelData())
-                .previewDevice(PreviewDevice(rawValue: deviceName))
-                .previewDisplayName(deviceName)
-        }
+        LandmarkList()
+            .environmentObject(ModelData())
     }
 }
